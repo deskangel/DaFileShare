@@ -11,6 +11,7 @@
 		A627D5A02445CD8C00C82D0E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A627D59F2445CD8C00C82D0E /* ViewController.swift */; };
 		A627D5A22445CD8E00C82D0E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A627D5A12445CD8E00C82D0E /* Assets.xcassets */; };
 		A627D5A52445CD8E00C82D0E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A627D5A32445CD8E00C82D0E /* Main.storyboard */; };
+		A627D5AE2445CDEC00C82D0E /* DragDestinationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A627D5AD2445CDEC00C82D0E /* DragDestinationView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -21,6 +22,7 @@
 		A627D5A42445CD8E00C82D0E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		A627D5A62445CD8E00C82D0E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A627D5A72445CD8E00C82D0E /* dafileshare.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = dafileshare.entitlements; sourceTree = "<group>"; };
+		A627D5AD2445CDEC00C82D0E /* DragDestinationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DragDestinationView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -55,6 +57,7 @@
 			children = (
 				A627D59D2445CD8C00C82D0E /* AppDelegate.swift */,
 				A627D59F2445CD8C00C82D0E /* ViewController.swift */,
+				A627D5AD2445CDEC00C82D0E /* DragDestinationView.swift */,
 				A627D5A12445CD8E00C82D0E /* Assets.xcassets */,
 				A627D5A32445CD8E00C82D0E /* Main.storyboard */,
 				A627D5A62445CD8E00C82D0E /* Info.plist */,
@@ -134,6 +137,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A627D5A02445CD8C00C82D0E /* ViewController.swift in Sources */,
+				A627D5AE2445CDEC00C82D0E /* DragDestinationView.swift in Sources */,
 				A627D59E2445CD8C00C82D0E /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

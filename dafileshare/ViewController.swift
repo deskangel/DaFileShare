@@ -9,10 +9,13 @@
 import Cocoa
 
 class ViewController: NSViewController {
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
+//        self.view.delegate = self
+        let view = self.view as! DragDestinationView
+        view.delegate = self
         // Do any additional setup after loading the view.
     }
 
@@ -21,7 +24,13 @@ class ViewController: NSViewController {
         // Update the view, if already loaded.
         }
     }
+}
 
-
+extension ViewController: FileDragDelegate {
+    func didFinishDrag(_ filePath: String) {
+        let url = NSURL(fileURLWithPath: filePath)
+        
+        print(url)
+    }
 }
 
