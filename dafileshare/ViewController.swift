@@ -9,31 +9,21 @@
 import Cocoa
 
 class ViewController: NSViewController {
-    let task = Process()
-    
+    public var task: Process = Process()
+
     override func viewDidLoad() {
         super.viewDidLoad()
-
-//        self.view.delegate = self
+        
         let view = self.view as! DragDestinationView
         view.delegate = self
-        // Do any additional setup after loading the view.
     }
     
     override func viewDidDisappear() {
-        if task.isRunning {
-            task.terminate()
-        }
-       
+        print("viewDidDisappear")
+        if self.task.isRunning {
+            self.task.terminate()
+         }
         super.viewDidDisappear()
-        
-        print("exit")
-    }
-
-    override var representedObject: Any? {
-        didSet {
-        // Update the view, if already loaded.
-        }
     }
 }
 
@@ -49,12 +39,13 @@ extension ViewController: FileDragDelegate {
         taskQueue.async {
             let appPath = Bundle.main.bundlePath;
             
-         
             self.task.launchPath = "\(appPath)/Contents/MacOS/fileweb";
 
             self.task.arguments = [filePath];
             
             self.captureStandarOutput(task: self.task)
+            
+
             
             self.task.launch()
             self.task.waitUntilExit()
