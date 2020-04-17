@@ -129,9 +129,25 @@
         <scene sceneID="hIz-AP-VOD">
             <objects>
                 <viewController id="XfG-lQ-9wD" customClass="ViewController" customModule="dafileshare" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" id="m2S-Jp-Qdl" customClass="DragDestinationView" customModule="dafileshare" customModuleProvider="target">
-                        <rect key="frame" x="0.0" y="0.0" width="480" height="270"/>
+                    <view key="view" misplaced="YES" id="m2S-Jp-Qdl" customClass="DragDestinationView" customModule="dafileshare" customModuleProvider="target">
+                        <rect key="frame" x="0.0" y="0.0" width="480" height="180"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <subviews>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" misplaced="YES" textCompletion="NO" translatesAutoresizingMaskIntoConstraints="NO" id="N8Z-4E-d6o">
+                                <rect key="frame" x="80" y="66" width="320" height="47"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" allowsUndo="NO" borderStyle="border" alignment="center" title="Drop file here" id="NQt-PE-aoq">
+                                    <font key="font" metaFont="system" size="36"/>
+                                    <color key="textColor" name="systemGrayColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                        </subviews>
+                        <constraints>
+                            <constraint firstAttribute="bottom" secondItem="N8Z-4E-d6o" secondAttribute="bottom" constant="80" id="IwL-0R-LcE"/>
+                            <constraint firstItem="N8Z-4E-d6o" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" constant="80" id="mt0-V6-0tD"/>
+                            <constraint firstAttribute="trailing" secondItem="N8Z-4E-d6o" secondAttribute="trailing" constant="80" id="r2r-Qm-zIm"/>
+                            <constraint firstItem="N8Z-4E-d6o" firstAttribute="top" secondItem="m2S-Jp-Qdl" secondAttribute="top" constant="80" id="wKE-cz-zC9"/>
+                        </constraints>
                     </view>
                 </viewController>
                 <customObject id="rPt-NT-nkU" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
