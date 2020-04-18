@@ -11,6 +11,8 @@ import Cocoa
 class ViewController: NSViewController {
     @IBOutlet weak var serverUrl: NSTextField!
     @IBOutlet weak var btnCopy: NSButton!
+    @IBOutlet weak var btnCancel: NSButton!
+    @IBOutlet weak var promptLabel: NSTextField!
     
     public var task: Process = Process()
 
@@ -22,6 +24,7 @@ class ViewController: NSViewController {
         
         serverUrl.isHidden = true
         btnCopy.isHidden = true
+        btnCancel.isHidden = true
     }
     
     override func viewDidDisappear() {
@@ -37,6 +40,12 @@ class ViewController: NSViewController {
         
         NSPasteboard.general.declareTypes([NSPasteboard.PasteboardType.string], owner: nil)
         NSPasteboard.general.setString(url, forType: NSPasteboard.PasteboardType.string)
+    }
+    
+    @IBAction func onCancelButtonClicked(_ sender: Any) {
+        if self.task.isRunning {
+            self.task.terminate()
+         }
     }
 }
 
@@ -73,6 +82,14 @@ extension ViewController: FileDragDelegate {
         } else {
             print("error")
         }
+        
+        DispatchQueue.main.async(execute: {
+            self.serverUrl.stringValue = ""
+            self.serverUrl.isHidden = true
+            self.btnCopy.isHidden = true
+            self.btnCancel.isHidden = true
+            self.promptLabel.stringValue = "Drop file here"
+        })
     }
     
     func runCommandAsync(commandPath:String, args: Array<String>, captureOutput: Bool = false) {
@@ -104,6 +121,8 @@ extension ViewController: FileDragDelegate {
                                                             self.serverUrl.stringValue = url
                                                             self.serverUrl.isHidden = false
                                                             self.btnCopy.isHidden = false
+                                                            self.btnCancel.isHidden = false
+                                                            self.promptLabel.stringValue = "Sharing..."
                                                         }
                                                         
                                                         
