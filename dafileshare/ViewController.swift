@@ -9,6 +9,9 @@
 import Cocoa
 
 class ViewController: NSViewController {
+    @IBOutlet weak var serverUrl: NSTextField!
+    @IBOutlet weak var btnCopy: NSButton!
+    
     public var task: Process = Process()
 
     override func viewDidLoad() {
@@ -16,6 +19,9 @@ class ViewController: NSViewController {
         
         let view = self.view as! DragDestinationView
         view.delegate = self
+        
+        serverUrl.isHidden = true
+        btnCopy.isHidden = true
     }
     
     override func viewDidDisappear() {
@@ -25,10 +31,17 @@ class ViewController: NSViewController {
          }
         super.viewDidDisappear()
     }
+    
+    @IBAction func onCopyButtonClicked(_ sender: Any) {
+    }
 }
 
 extension ViewController: FileDragDelegate {
     func didFinishDrag(_ filePath: String) {
+        
+        if (self.task.isRunning) {
+            return
+        }
 
         runCommand(filePath: filePath)
     }
@@ -74,12 +87,39 @@ extension ViewController: FileDragDelegate {
                                                 if outputString != "" {
                                                     DispatchQueue.main.async(execute: {
                                                         print(">> " + outputString)
+                                                        let url = self.extractUrl(content: outputString)
+                                                        
+                                                        if (!url.isEmpty) {
+                                                            self.serverUrl.stringValue = url
+                                                            self.serverUrl.isHidden = false
+                                                            self.btnCopy.isHidden = false
+                                                        }
+                                                        
+                                                        
                                                     })
                                                 }
                                                 
                                                 outputPipe.fileHandleForReading.waitForDataInBackgroundAndNotify()
                                                 
         })
+    }
+    
+    func extractUrl(content: String) -> String {
+
+        let detector = try? NSDataDetector(types: NSTextCheckingResult.CheckingType.link.rawValue)
+        
+        if detector == nil {
+            print("error")
+        }
+        
+        
+        let matches = detector!.matches(in: content, options: .reportCompletion, range: NSMakeRange(0, content.count))
+        
+        for match in matches {
+            return match.url!.absoluteString
+        }
+        
+        return ""
     }
 }
 
