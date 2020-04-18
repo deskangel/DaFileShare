@@ -12,18 +12,19 @@
 		A627D5A22445CD8E00C82D0E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A627D5A12445CD8E00C82D0E /* Assets.xcassets */; };
 		A627D5A52445CD8E00C82D0E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A627D5A32445CD8E00C82D0E /* Main.storyboard */; };
 		A627D5AE2445CDEC00C82D0E /* DragDestinationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A627D5AD2445CDEC00C82D0E /* DragDestinationView.swift */; };
-		A6BEC2F6244971650004F649 /* fileweb in CopyFiles */ = {isa = PBXBuildFile; fileRef = A6BEC2E624496F640004F649 /* fileweb */; };
+		A6BEC2F6244971650004F649 /* fileweb in Copy Binary files */ = {isa = PBXBuildFile; fileRef = A6BEC2E624496F640004F649 /* fileweb */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		A6BEC2F5244971500004F649 /* CopyFiles */ = {
+		A6BEC2F5244971500004F649 /* Copy Binary files */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 12;
 			dstPath = "";
 			dstSubfolderSpec = 6;
 			files = (
-				A6BEC2F6244971650004F649 /* fileweb in CopyFiles */,
+				A6BEC2F6244971650004F649 /* fileweb in Copy Binary files */,
 			);
+			name = "Copy Binary files";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXCopyFilesBuildPhase section */
@@ -92,7 +93,7 @@
 				A627D5962445CD8C00C82D0E /* Sources */,
 				A627D5972445CD8C00C82D0E /* Frameworks */,
 				A627D5982445CD8C00C82D0E /* Resources */,
-				A6BEC2F5244971500004F649 /* CopyFiles */,
+				A6BEC2F5244971500004F649 /* Copy Binary files */,
 			);
 			buildRules = (
 			);
