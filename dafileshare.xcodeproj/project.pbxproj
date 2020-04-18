@@ -30,7 +30,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		A627D59A2445CD8C00C82D0E /* dafileshare.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = dafileshare.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		A627D59A2445CD8C00C82D0E /* DaFileShare.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DaFileShare.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A627D59D2445CD8C00C82D0E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A627D59F2445CD8C00C82D0E /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		A627D5A12445CD8E00C82D0E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -63,7 +63,7 @@
 		A627D59B2445CD8C00C82D0E /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				A627D59A2445CD8C00C82D0E /* dafileshare.app */,
+				A627D59A2445CD8C00C82D0E /* DaFileShare.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -86,9 +86,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		A627D5992445CD8C00C82D0E /* dafileshare */ = {
+		A627D5992445CD8C00C82D0E /* DaFileShare */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = A627D5AA2445CD8E00C82D0E /* Build configuration list for PBXNativeTarget "dafileshare" */;
+			buildConfigurationList = A627D5AA2445CD8E00C82D0E /* Build configuration list for PBXNativeTarget "DaFileShare" */;
 			buildPhases = (
 				A627D5962445CD8C00C82D0E /* Sources */,
 				A627D5972445CD8C00C82D0E /* Frameworks */,
@@ -99,9 +99,9 @@
 			);
 			dependencies = (
 			);
-			name = dafileshare;
+			name = DaFileShare;
 			productName = dafileshare;
-			productReference = A627D59A2445CD8C00C82D0E /* dafileshare.app */;
+			productReference = A627D59A2445CD8C00C82D0E /* DaFileShare.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -132,7 +132,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				A627D5992445CD8C00C82D0E /* dafileshare */,
+				A627D5992445CD8C00C82D0E /* DaFileShare */,
 			);
 		};
 /* End PBXProject section */
@@ -294,11 +294,13 @@
 				CODE_SIGN_ENTITLEMENTS = dafileshare/dafileshare.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1001;
 				INFOPLIST_FILE = dafileshare/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
+				MACOSX_DEPLOYMENT_TARGET = 10.13;
 				PRODUCT_BUNDLE_IDENTIFIER = com.deskangel.dafileshare;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -312,11 +314,13 @@
 				CODE_SIGN_ENTITLEMENTS = dafileshare/dafileshare.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1001;
 				INFOPLIST_FILE = dafileshare/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
+				MACOSX_DEPLOYMENT_TARGET = 10.13;
 				PRODUCT_BUNDLE_IDENTIFIER = com.deskangel.dafileshare;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -335,7 +339,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		A627D5AA2445CD8E00C82D0E /* Build configuration list for PBXNativeTarget "dafileshare" */ = {
+		A627D5AA2445CD8E00C82D0E /* Build configuration list for PBXNativeTarget "DaFileShare" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				A627D5AB2445CD8E00C82D0E /* Debug */,

@@ -28,7 +28,7 @@ class ViewController: NSViewController {
     }
     
     override func viewDidDisappear() {
-        print("viewDidDisappear")
+//        print("viewDidDisappear")
         if self.task.isRunning {
             self.task.terminate()
          }
@@ -139,7 +139,7 @@ extension ViewController: FileDragDelegate {
         let detector = try? NSDataDetector(types: NSTextCheckingResult.CheckingType.link.rawValue)
         
         if detector == nil {
-            print("error")
+            print("extractUrl error")
         }
         
         
