@@ -13,6 +13,7 @@ class ViewController: NSViewController {
     @IBOutlet weak var btnCopy: NSButton!
     @IBOutlet weak var btnCancel: NSButton!
     @IBOutlet weak var promptLabel: NSTextField!
+    @IBOutlet weak var qrImage: NSImageView!
     
     public var task: Process = Process()
 
@@ -89,6 +90,7 @@ extension ViewController: FileDragDelegate {
             self.btnCopy.isHidden = true
             self.btnCancel.isHidden = true
             self.promptLabel.stringValue = "Drop file here"
+            self.qrImage.image = nil
         })
     }
     
@@ -123,6 +125,7 @@ extension ViewController: FileDragDelegate {
                                                             self.btnCopy.isHidden = false
                                                             self.btnCancel.isHidden = false
                                                             self.promptLabel.stringValue = "Sharing..."
+                                                            self.qrImage.image = self.createQRImage(content: url)
                                                         }
                                                         
                                                         
@@ -150,6 +153,58 @@ extension ViewController: FileDragDelegate {
         }
         
         return ""
+    }
+    
+    func generateOrgQRImage(content: String) -> CIImage? {
+        let data = content.data(using: .utf8)
+        
+        let qrFilter = CIFilter(name: "CIQRCodeGenerator")
+        guard qrFilter != nil else {
+            return nil
+        }
+        
+        qrFilter!.setValue(data, forKey: "inputMessage")
+        
+        qrFilter!.setValue("H", forKey: "inputCorrectionLevel")
+        
+        return qrFilter!.outputImage
+    }
+    
+    func createQRImage(content: String, size: NSSize = NSSize(width: 200, height: 200)) -> NSImage? {
+        guard let originImage = generateOrgQRImage(content: content) else {
+            return nil
+        }
+        
+        let colorFilter = CIFilter(name: "CIFalseColor")
+        
+        colorFilter!.setValue(originImage, forKey: "inputImage")
+        
+        colorFilter!.setValue(CIColor.black, forKey: "inputColor0")
+        colorFilter!.setValue(CIColor.white, forKey: "inputColor1")
+        
+        guard let colorImage = colorFilter?.outputImage?.transformed(by: CGAffineTransform(scaleX: size.width/originImage.extent.width, y: size.height/originImage.extent.height)) else {
+            fatalError("failed to generate the colorImage")
+        }
+        
+        let image = NSImage(cgImage: convertCIImageToCGImage(inputImage: colorImage)!, size: size)
+        
+//        if let fillImage = fillImage {
+//            let fillRect = CGRect(x: (size.width - size.width/4)/2, y: (size.height - size.height/4)/2, width: size.width/4, height: size.height/4)
+//            image.lockFocus()
+//            fillImage.draw(in: fillRect)
+//            image.unlockFocus()
+//        }
+        
+        return image
+        
+    }
+    
+    private func convertCIImageToCGImage(inputImage: CIImage) -> CGImage? {
+        let context = CIContext(options: nil)
+        if let cgImage = context.createCGImage(inputImage, from: inputImage.extent) {
+            return cgImage
+        }
+        return nil
     }
 }
 
