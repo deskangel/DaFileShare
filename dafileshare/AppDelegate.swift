@@ -16,6 +16,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     func applicationDidFinishLaunching(_ aNotification: Notification) {
         // Insert code here to initialize your application
         ProcessInfo.processInfo.disableSuddenTermination()
+        
+        signal(SIGTERM, SIG_IGN) // Make sure the signal does not terminate the application.
     }
 
     func applicationWillTerminate(_ aNotification: Notification) {
