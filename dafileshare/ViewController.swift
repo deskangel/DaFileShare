@@ -33,6 +33,10 @@ class ViewController: NSViewController {
     }
     
     @IBAction func onCopyButtonClicked(_ sender: Any) {
+        let url = self.serverUrl.stringValue
+        
+        NSPasteboard.general.declareTypes([NSPasteboard.PasteboardType.string], owner: nil)
+        NSPasteboard.general.setString(url, forType: NSPasteboard.PasteboardType.string)
     }
 }
 
@@ -42,33 +46,40 @@ extension ViewController: FileDragDelegate {
         if (self.task.isRunning) {
             return
         }
+        
+//        runCommand(commandPath: "/usr/bin/killall", args: ["fileweb"])
 
-        runCommand(filePath: filePath)
+        let appPath = Bundle.main.bundlePath;
+        runCommandAsync(commandPath: "\(appPath)/Contents/MacOS/fileweb", args: [filePath], captureOutput: true)
     }
     
-    func runCommand(filePath: String) {
+    func runCommand(commandPath:String, args: Array<String>, captureOutput: Bool = false) {
+        self.task = Process()
+        
+        self.task.launchPath = commandPath;
+
+        self.task.arguments = args;
+        
+        if (captureOutput) {
+            self.captureStandarOutput(task: self.task)
+        }
+
+        self.task.launch()
+        self.task.waitUntilExit()
+        
+        let status = self.task.terminationStatus
+        if (status == 0) {
+            print("done!!")
+        } else {
+            print("error")
+        }
+    }
+    
+    func runCommandAsync(commandPath:String, args: Array<String>, captureOutput: Bool = false) {
         let taskQueue = DispatchQueue.global(qos: DispatchQoS.QoSClass.background)
         
         taskQueue.async {
-            let appPath = Bundle.main.bundlePath;
-            
-            self.task.launchPath = "\(appPath)/Contents/MacOS/fileweb";
-
-            self.task.arguments = [filePath];
-            
-            self.captureStandarOutput(task: self.task)
-            
-
-            
-            self.task.launch()
-            self.task.waitUntilExit()
-            
-            let status = self.task.terminationStatus
-            if (status == 0) {
-                print("done!!")
-            } else {
-                print("error")
-            }
+            self.runCommand(commandPath: commandPath, args: args, captureOutput: captureOutput)
         }
     }
     
