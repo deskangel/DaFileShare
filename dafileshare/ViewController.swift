@@ -23,6 +23,7 @@ class ViewController: NSViewController {
         let view = self.view as! DragDestinationView
         view.delegate = self
         
+        serverUrl.isBordered = false
         serverUrl.isHidden = true
         btnCopy.isHidden = true
         btnCancel.isHidden = true
@@ -80,18 +81,53 @@ extension ViewController: FileDragDelegate {
         let status = self.task.terminationStatus
         if (status == 0) {
             print("done!!")
+            
+            DispatchQueue.main.async(execute: {
+                self.serverUrl.stringValue = ""
+                self.serverUrl.isHidden = true
+                self.btnCopy.isHidden = true
+                self.btnCancel.isHidden = true
+                self.promptLabel.stringValue = "Drop file here"
+                self.qrImage.image = nil
+            })
+
         } else {
             print("error")
+            var message: String = ""
+            switch status {
+            case 1:
+                message = "error: no path specified"
+                break
+            case 2:
+                message = "error: path not supported"
+                break
+            case 3:
+                message = "error: failed to retrieve ip address"
+                break
+            case 4:
+                message = "error: failed to share the file"
+                break
+            default:
+                break
+            }
+            DispatchQueue.main.async(execute: {
+                self.promptLabel.stringValue = "Drop file here"
+                self.qrImage.image = nil
+                self.btnCopy.isHidden = true
+                self.btnCancel.isHidden = true
+                
+                if message.isEmpty {
+                    self.serverUrl.stringValue = ""
+                    self.serverUrl.isHidden = true
+                } else {
+                    self.serverUrl.stringValue = message
+                    self.serverUrl.isHidden = false
+                    
+                    self.serverUrl.textColor = NSColor.red
+                }
+            })
         }
         
-        DispatchQueue.main.async(execute: {
-            self.serverUrl.stringValue = ""
-            self.serverUrl.isHidden = true
-            self.btnCopy.isHidden = true
-            self.btnCancel.isHidden = true
-            self.promptLabel.stringValue = "Drop file here"
-            self.qrImage.image = nil
-        })
     }
     
     func runCommandAsync(commandPath:String, args: Array<String>, captureOutput: Bool = false) {
@@ -121,6 +157,7 @@ extension ViewController: FileDragDelegate {
                                                         
                                                         if (!url.isEmpty) {
                                                             self.serverUrl.stringValue = url
+                                                            self.serverUrl.textColor = NSColor.white
                                                             self.serverUrl.isHidden = false
                                                             self.btnCopy.isHidden = false
                                                             self.btnCancel.isHidden = false
