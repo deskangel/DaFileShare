@@ -10,5 +10,13 @@
             </PersistentString>
          </PersistentStrings>
       </ContextState>
+      <ContextState
+         contextName = "ViewController.extractClientCount(content:):ViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "results.count">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
    </ContextStates>
 </VariablesViewState>

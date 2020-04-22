@@ -14,6 +14,7 @@ class ViewController: NSViewController {
     @IBOutlet weak var btnCancel: NSButton!
     @IBOutlet weak var promptLabel: NSTextField!
     @IBOutlet weak var qrImage: NSImageView!
+    @IBOutlet weak var clientCount: NSTextField!
     
     public var task: Process = Process()
 
@@ -23,10 +24,7 @@ class ViewController: NSViewController {
         let view = self.view as! DragDestinationView
         view.delegate = self
         
-        serverUrl.isBordered = false
-        serverUrl.isHidden = true
-        btnCopy.isHidden = true
-        btnCancel.isHidden = true
+        initFileWeb()
     }
     
     override func viewDidDisappear() {
@@ -48,6 +46,57 @@ class ViewController: NSViewController {
         if self.task.isRunning {
             self.task.terminate()
          }
+    }
+    
+    func initFileWeb() {
+        serverUrl.isBordered = false
+        serverUrl.isHidden = true
+        btnCopy.isHidden = true
+        btnCancel.isHidden = true
+        clientCount.isHidden = true
+    }
+    
+    func onFileWebDone() {
+        self.serverUrl.stringValue = ""
+        self.serverUrl.isHidden = true
+        self.btnCopy.isHidden = true
+        self.btnCancel.isHidden = true
+        self.clientCount.isHidden = true
+        self.promptLabel.stringValue = "Drop file here"
+        self.qrImage.image = nil
+    }
+    
+    func onFileWebGoing(url:String, count:String) {
+        if (!url.isEmpty) {
+            self.serverUrl.stringValue = url
+            self.serverUrl.textColor = NSColor.white
+            self.serverUrl.isHidden = false
+            self.btnCopy.isHidden = false
+            self.btnCancel.isHidden = false
+            self.promptLabel.stringValue = "Sharing..."
+            self.qrImage.image = self.createQRImage(content: url)
+        }
+        
+        self.clientCount.isHidden = false
+        self.clientCount.stringValue = count        
+    }
+    
+    func onFileWebError(message:String) {
+        self.promptLabel.stringValue = "Drop file here"
+        self.qrImage.image = nil
+        self.btnCopy.isHidden = true
+        self.btnCancel.isHidden = true
+        self.clientCount.isHidden = true
+        
+        if message.isEmpty {
+            self.serverUrl.stringValue = ""
+            self.serverUrl.isHidden = true
+        } else {
+            self.serverUrl.stringValue = message
+            self.serverUrl.isHidden = false
+            
+            self.serverUrl.textColor = NSColor.red
+        }
     }
 }
 
@@ -83,12 +132,7 @@ extension ViewController: FileDragDelegate {
             print("done!!")
             
             DispatchQueue.main.async(execute: {
-                self.serverUrl.stringValue = ""
-                self.serverUrl.isHidden = true
-                self.btnCopy.isHidden = true
-                self.btnCancel.isHidden = true
-                self.promptLabel.stringValue = "Drop file here"
-                self.qrImage.image = nil
+                self.onFileWebDone()
             })
 
         } else {
@@ -111,20 +155,8 @@ extension ViewController: FileDragDelegate {
                 break
             }
             DispatchQueue.main.async(execute: {
-                self.promptLabel.stringValue = "Drop file here"
-                self.qrImage.image = nil
-                self.btnCopy.isHidden = true
-                self.btnCancel.isHidden = true
-                
-                if message.isEmpty {
-                    self.serverUrl.stringValue = ""
-                    self.serverUrl.isHidden = true
-                } else {
-                    self.serverUrl.stringValue = message
-                    self.serverUrl.isHidden = false
-                    
-                    self.serverUrl.textColor = NSColor.red
-                }
+                self.onFileWebError(message: message);
+
             })
         }
         
@@ -150,22 +182,13 @@ extension ViewController: FileDragDelegate {
                                                 
                                                 let output = outputPipe.fileHandleForReading.availableData
                                                 let outputString = String(data: output, encoding: String.Encoding.utf8) ?? ""
+
                                                 if outputString != "" {
                                                     DispatchQueue.main.async(execute: {
                                                         print(">> " + outputString)
                                                         let url = self.extractUrl(content: outputString)
-                                                        
-                                                        if (!url.isEmpty) {
-                                                            self.serverUrl.stringValue = url
-                                                            self.serverUrl.textColor = NSColor.white
-                                                            self.serverUrl.isHidden = false
-                                                            self.btnCopy.isHidden = false
-                                                            self.btnCancel.isHidden = false
-                                                            self.promptLabel.stringValue = "Sharing..."
-                                                            self.qrImage.image = self.createQRImage(content: url)
-                                                        }
-                                                        
-                                                        
+                                                        let count = self.extractClientCount(content: outputString)
+                                                        self.onFileWebGoing(url: url, count: count)
                                                     })
                                                 }
                                                 
@@ -182,7 +205,6 @@ extension ViewController: FileDragDelegate {
             print("extractUrl error")
         }
         
-        
         let matches = detector!.matches(in: content, options: .reportCompletion, range: NSMakeRange(0, content.count))
         
         for match in matches {
@@ -190,6 +212,23 @@ extension ViewController: FileDragDelegate {
         }
         
         return ""
+    }
+    
+    func extractClientCount(content: String) -> String {
+        do {
+            let regex = try NSRegularExpression(pattern: "client count: [0-9]*")
+            let results = regex.matches(in: content,
+                                        range: NSRange(content.startIndex..., in: content))
+            
+            if results.last == nil {
+                return "client count: 0"
+            }
+            
+            return String(content[Range(results.last!.range, in: content)!])
+        } catch let error {
+            print("invalid regex: \(error.localizedDescription)")
+            return "error"
+        }
     }
     
     func generateOrgQRImage(content: String) -> CIImage? {
