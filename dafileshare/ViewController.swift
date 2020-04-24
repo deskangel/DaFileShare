@@ -16,6 +16,11 @@ class ViewController: NSViewController {
     @IBOutlet weak var qrImage: NSImageView!
     @IBOutlet weak var clientCount: NSTextField!
     
+    @IBAction func donateMenuItemSelected(_ sender: Any) {
+        let paypalUrl = URL(string: "https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=william%2exue%40gmail%2ecom&no_shipping=0&no_note=1&tax=0&currency_code=USD&lc=C2&bn=PP%2dDonationsBF&charset=UTF%2d8")!
+        NSWorkspace.shared.open(paypalUrl)
+    }
+    
     public var task: Process = Process()
 
     override func viewDidLoad() {
