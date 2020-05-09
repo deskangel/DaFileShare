@@ -7,7 +7,7 @@ Users can download the file on other devices by dragging the file into the windo
 
 Simple, convenient, lightweight and efficient!
 
-If you think the app is somewhat useful, please [donate](https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=william%2exue%40gmail%2ecom&no_shipping=0&no_note=1&tax=0&currency_code=USD&lc=C2&bn=PP%2dDonationsBF&charset=UTF%2d8) to me for a coffee.
+If you think the app is somewhat useful, consider [buying me a cup of coffee](https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=william%2exue%40gmail%2ecom&no_shipping=0&no_note=1&tax=0&currency_code=USD&lc=C2&bn=PP%2dDonationsBF&charset=UTF%2d8) to keep me recharged.
 
 
 通过创建一个临时的超轻量 web 服务器进行文件分享（暂只支持同一局域网）。
@@ -16,5 +16,5 @@ If you think the app is somewhat useful, please [donate](https://www.paypal.com/
 
 简洁、方便、轻量、高效！
 
-如果你觉得这个 App有点用处，请[捐助](https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=william%2exue%40gmail%2ecom&no_shipping=0&no_note=1&tax=0&currency_code=USD&lc=C2&bn=PP%2dDonationsBF&charset=UTF%2d8)我买个咖啡。
+如果你觉得这个 App有点用处，可以考虑[捐助一下](https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=william%2exue%40gmail%2ecom&no_shipping=0&no_note=1&tax=0&currency_code=USD&lc=C2&bn=PP%2dDonationsBF&charset=UTF%2d8)让我保持动力。
 
