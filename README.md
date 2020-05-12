@@ -16,5 +16,5 @@ If you think the app is somewhat useful, consider [buying me a cup of coffee](ht
 
 简洁、方便、轻量、高效！
 
-如果你觉得这个 App有点用处，可以考虑[捐助一下](https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=william%2exue%40gmail%2ecom&no_shipping=0&no_note=1&tax=0&currency_code=USD&lc=C2&bn=PP%2dDonationsBF&charset=UTF%2d8)让我保持动力。
+如果你觉得这个 App有点用处，可以考虑[捐助一下](https://www.paypal.me/minweix)让我保持动力。
 
