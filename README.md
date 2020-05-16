@@ -32,3 +32,5 @@ DaShare 使用命令行工具 [Fileweb](https://github.com/deskangel/fileshare-c
 ### Android版本
 如果你在希望使用安卓版本，可以查看这个项目： [DaShare](https://github.com/deskangel/DaShare)
 
+### 开发笔记
+如果你对 DaFileShare 的开发笔记感兴趣，可以访问我的blog查看 [DaFileShare 开发笔记](https://blog.deskangel.com/2020/04/20/dafileserver-dev-notes/)
