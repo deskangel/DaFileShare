@@ -7,7 +7,7 @@ Users can download the file on other devices by dragging the file into the windo
 
 Simple, convenient, lightweight and efficient!
 
-If you think the app is somewhat useful, consider [buying me a cup of coffee](https://www.paypal.me/minweix) to keep me recharged.
+If you think the app is somewhat useful, consider [buying me a cup of coffee](https://blog.deskangel.com/images/wx_donate.png) to keep me recharged.
 
 ### Fileweb
 DaShare uses the command line tool [Fileweb](https://github.com/deskangel/fileshare-command-line) to create temporary web services.It was developed using the [dart](https://dart.dev/) language.
@@ -25,7 +25,7 @@ DaFileShare 通过创建一个临时的超轻量 web 服务器进行文件分享
 
 简洁、方便、轻量、高效！
 
-如果你觉得这个 App有点用处，可以考虑[捐助一下](https://www.paypal.me/minweix)让我保持动力。
+如果你觉得这个 App有点用处，可以考虑[捐助一下](https://blog.deskangel.com/images/wx_donate.png)让我保持动力。
 ### Fileweb
 DaShare 使用命令行工具 [Fileweb](https://github.com/deskangel/fileshare-command-line) 来创建临时web服务。这是用 [dart](https://dart.dev/)  开发的一个小工具。
 
